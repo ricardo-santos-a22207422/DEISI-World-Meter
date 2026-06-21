@@ -20,7 +20,7 @@ public class Pais {
         if(id < 700) {
             return nome + commonSep + id + commonSep + alfa2.toUpperCase() + commonSep + alfa3.toUpperCase();
         } else {
-            //TODO Change toString so that in this case it returns also the number of population file line that give statistics about said country
+            //TODO Change toString so that in this case it returns also the number of population file lines that give statistics about said country
             return nome + commonSep + id + commonSep + alfa2.toUpperCase() + commonSep + alfa3.toUpperCase() + commonSep;
         }
     }

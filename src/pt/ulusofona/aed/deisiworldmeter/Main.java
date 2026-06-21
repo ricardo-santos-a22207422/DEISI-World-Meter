@@ -190,13 +190,33 @@ public class Main {
     /**
      *
      * @param tipo TipoEntidade type variable, to define what type of Objects we want listed in output
-     * @return A toString() combination os all the Objects found in database of inputed Type of Entity
+     * @return A toString() combination of all the Objects found in database of inputed Type of Entity
      */
     public static ArrayList getObjects(TipoEntidade tipo) {
+        switch (tipo) {
+            case PAIS:
+                return new ArrayList<>(paises.values());
+            case CIDADE:
+                return cidades;
+            //For this case it must return the invalid inputs found in a format yet to be understood
+            case INPUT_INVALIDO:
+                return null;
+        }
+
         return null;
     }
 
     public static void main(String[] args) {
         System.out.println("Welcome to DEISI World Meter");
+        System.out.println("Testing the country file parser:");
+
+        File file = new File("Test Files/paises.csv");
+        if(readPaisesFile(file)) {
+            for(Pais pais : paises.values()) {
+                System.out.println(pais.toString());
+            }
+        } else {
+            System.out.println("Error reading files");
+        }
     }
 }
