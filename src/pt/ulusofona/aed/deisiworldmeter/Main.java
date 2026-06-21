@@ -13,6 +13,7 @@ public class Main {
     private static HashMap<String, Integer> paisesAlfa2Map = new HashMap<>();
     private static ArrayList<Cidade> cidades = new ArrayList<>();
     private static ArrayList<Populacao> populacoes = new ArrayList<>();
+    private static ArrayList<InvalidInput> invalidInputs = new ArrayList<>();
 
 
 
@@ -193,17 +194,13 @@ public class Main {
      * @return A toString() combination of all the Objects found in database of inputed Type of Entity
      */
     public static ArrayList getObjects(TipoEntidade tipo) {
-        switch (tipo) {
-            case PAIS:
-                return new ArrayList<>(paises.values());
-            case CIDADE:
-                return cidades;
-            //For this case it must return the invalid inputs found in a format yet to be understood
-            case INPUT_INVALIDO:
-                return null;
-        }
+        return switch (tipo) {
+            case PAIS -> new ArrayList<>(paises.values());
+            case CIDADE -> cidades;
+            //For this case it must return the invalid inputs found in the following format: nome | linhas OK | linhas NOK | primeira linha NOK
+            case INPUT_INVALIDO -> invalidInputs;
+        };
 
-        return null;
     }
 
     public static void main(String[] args) {
